@@ -17,7 +17,17 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
   const { name, category, price, quantity } = req.body;
   try {
-    const newProduct = new Product({ name, category, price, quantity });
+    // sku இல்லை என்றால் தானாக ஒரு ரேண்டம் SKU உருவாக்குகிறது
+    const generatedSku = 'SKU-' + Math.floor(100000 + Math.random() * 900000);
+    
+    const newProduct = new Product({ 
+      sku: generatedSku,
+      name, 
+      category, 
+      price, 
+      quantity 
+    });
+    
     await newProduct.save();
     res.status(201).json(newProduct);
   } catch (error) {
