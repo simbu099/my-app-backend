@@ -3,7 +3,8 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import productRoutes from './routes/productRoutes.js';
-import authRoutes from './routes/authRoutes.js'; // Auth Import
+import authRoutes from './routes/authRoutes.js';
+import supplierRoutes from './routes/supplierRoutes.js'; // Added Supplier Routes
 
 dotenv.config();
 
@@ -13,7 +14,8 @@ app.use(express.json());
 
 // Routes
 app.use('/api/products', productRoutes);
-app.use('/api/auth', authRoutes); // Auth Route added
+app.use('/api/auth', authRoutes);
+app.use('/api/suppliers', supplierRoutes); // Added Supplier API
 
 const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGO_URI;
